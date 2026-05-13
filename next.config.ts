@@ -1,5 +1,13 @@
-import { getApiHost } from "@/lib/utils";
 import type { NextConfig } from "next";
+
+// Inlined here because next.config.ts is loaded before path aliases (@/) are resolved.
+function getApiHost(url?: string): string {
+	try {
+		return url ? new URL(url).hostname : "";
+	} catch {
+		return "";
+	}
+}
 
 const nextConfig: NextConfig = {
 	/* config options here */
